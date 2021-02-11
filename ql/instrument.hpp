@@ -133,7 +133,7 @@ namespace QuantLib {
 
     inline Instrument::Instrument()
     : NPV_(Null<Real>()), errorEstimate_(Null<Real>()),
-      valuationDate_(Date()), timing_({}) {}
+      valuationDate_(Date()) {}
 
     inline void Instrument::setPricingEngine(
                                   const ext::shared_ptr<PricingEngine>& e) {
@@ -177,7 +177,7 @@ namespace QuantLib {
         engine_->calculate();
         timer.stop();
         boost::timer::cpu_times timings = timer.elapsed();
-        timing_ = { timings.wall, timings.user, timings.system };
+        timing_ = Timings(timings.wall, timings.user, timings.system);
 
         fetchResults(engine_->getResults());
     }

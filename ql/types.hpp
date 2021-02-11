@@ -85,9 +85,13 @@ namespace QuantLib {
     //! timing
     typedef boost::timer::nanosecond_type Nanosecond;
     struct Timings {
-        Nanosecond wall = 0;
-        Nanosecond user = 0;
-        Nanosecond system = 0;
+        Timings() : wall(0), user(0), system(0) {}
+        Timings(Nanosecond w, Nanosecond u, Nanosecond s)
+            : wall(w), user(u), system(s) {}
+
+        Nanosecond wall;
+        Nanosecond user;
+        Nanosecond system;
     };
 
 }
