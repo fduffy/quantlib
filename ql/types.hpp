@@ -26,6 +26,7 @@
 #define quantlib_types_hpp
 
 #include <ql/qldefines.hpp>
+#include <boost/timer/timer.hpp>
 #include <cstddef>
 
 namespace QuantLib {
@@ -80,6 +81,18 @@ namespace QuantLib {
     //! probability
     /*! \ingroup types */
     typedef Real Probability;
+
+    //! timing
+    typedef boost::timer::nanosecond_type Nanosecond;
+    struct Timings {
+        Timings() : wall(0), user(0), system(0) {}
+        Timings(Nanosecond w, Nanosecond u, Nanosecond s)
+            : wall(w), user(u), system(s) {}
+
+        Nanosecond wall;
+        Nanosecond user;
+        Nanosecond system;
+    };
 
 }
 

@@ -30,6 +30,7 @@
 #include <ql/utilities/null.hpp>
 #include <ql/time/date.hpp>
 #include <boost/any.hpp>
+#include <boost/timer/timer.hpp>
 #include <map>
 #include <string>
 
@@ -82,6 +83,9 @@ namespace QuantLib {
             it. This is mandatory in case a pricing engine is used.
         */
         virtual void fetchResults(const PricingEngine::results*) const;
+        /*! Return the timings for this instruments calculation.
+        */
+        const Timings& timing() const;
       protected:
         //! \name Calculations
         //@{
@@ -106,6 +110,7 @@ namespace QuantLib {
         mutable Real NPV_, errorEstimate_;
         mutable Date valuationDate_;
         mutable std::map<std::string,boost::any> additionalResults_;
+        mutable Timings timing_;
         //@}
         ext::shared_ptr<PricingEngine> engine_;
     };
@@ -167,7 +172,13 @@ namespace QuantLib {
         engine_->reset();
         setupArguments(engine_->getArguments());
         engine_->getArguments()->validate();
+
+        boost::timer::cpu_timer timer;
         engine_->calculate();
+        timer.stop();
+        boost::timer::cpu_times timings = timer.elapsed();
+        timing_ = Timings(timings.wall, timings.user, timings.system);
+
         fetchResults(engine_->getResults());
     }
 
@@ -181,6 +192,10 @@ namespace QuantLib {
         valuationDate_ = results->valuationDate;
 
         additionalResults_ = results->additionalResults;
+    }
+
+    inline const Timings& Instrument::timing() const {
+        return timing_;
     }
 
     inline Real Instrument::NPV() const {
