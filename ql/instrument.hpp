@@ -195,6 +195,7 @@ namespace QuantLib {
     }
 
     inline const Timings& Instrument::timing() const {
+        calculate();
         return timing_;
     }
 
