@@ -1,2 +1,2 @@
 add_executable(MarketModels MarketModels.cpp)
-target_link_libraries(MarketModels ${QL_LINK_LIBRARY})
+target_link_libraries(MarketModels ${QL_LINK_LIBRARY} ${Boost_LIBRARIES})

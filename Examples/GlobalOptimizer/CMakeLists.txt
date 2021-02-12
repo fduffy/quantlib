@@ -1,2 +1,2 @@
 add_executable(GlobalOptimizer GlobalOptimizer.cpp)
-target_link_libraries(GlobalOptimizer ${QL_LINK_LIBRARY})
+target_link_libraries(GlobalOptimizer ${QL_LINK_LIBRARY} ${Boost_LIBRARIES})

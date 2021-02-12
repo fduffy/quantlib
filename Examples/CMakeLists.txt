@@ -17,3 +17,6 @@ add_subdirectory(MultidimIntegral)
 add_subdirectory(MulticurveBootstrapping)
 add_subdirectory(Replication)
 add_subdirectory(Repo)
+
+find_package (Boost REQUIRED COMPONENTS timer OPTIONAL_COMPONENTS chrono)
+
