@@ -30,7 +30,7 @@ else
 noinst_PROGRAMS = $(EXAMPLES)
 endif
 
-LDADDS = ../ql/libQuantLib.la ${BOOST_THREAD_LIB}
+LDADDS = ../ql/libQuantLib.la -lboost_timer -lboost_chrono ${BOOST_THREAD_LIB}
 
 BasketLosses_BasketLosses_SOURCES = BasketLosses/BasketLosses.cpp
 BasketLosses_BasketLosses_LDADD = $(LDADDS)
