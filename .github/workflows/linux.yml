@@ -45,6 +45,7 @@ jobs:
             tag: groovy
             cc: gcc
             cxx: g++
+            moreflags: -lboost_timer -lboost_chrono
             tests: true
           - name: "Clang 6 (Boost 1.72)"
             shortname: clang6
@@ -76,6 +77,7 @@ jobs:
             tag: groovy
             cc: clang
             cxx: clang++
+            moreflags: -lboost_timer -lboost_chrono
             tests: true
           - name: "C++11 mode"
             shortname: c++11
@@ -113,6 +115,7 @@ jobs:
             cc: gcc
             cxx: g++
             configureflags: --enable-intraday
+            moreflags: -lboost_timer -lboost_chrono
             tests: true
           - name: "Indexed coupons enabled"
             shortname: indexed
@@ -120,6 +123,7 @@ jobs:
             cc: gcc
             cxx: g++
             configureflags: --enable-indexed-coupons
+            moreflags: -lboost_timer -lboost_chrono
             tests: true
           - name: "C++11 classes enabled"
             shortname: stdclasses
@@ -128,6 +132,7 @@ jobs:
             cxx: g++
             cxxflags: "-std=c++11"
             configureflags: --enable-std-classes
+            moreflags: -lboost_timer -lboost_chrono
             tests: true
           - name: "auto_ptr re-enabled"
             shortname: autoptr
@@ -136,6 +141,7 @@ jobs:
             cxx: g++
             cxxflags: "-Wno-deprecated-declarations"
             configureflags: --disable-std-unique-ptr
+            moreflags: -lboost_timer -lboost_chrono
             tests: true
           - name: "Disposable re-enabled"
             shortname: disposable
@@ -143,6 +149,7 @@ jobs:
             cc: gcc
             cxx: g++
             configureflags: --enable-disposable
+            moreflags: -lboost_timer -lboost_chrono
             tests: true
           - name: "Thread-safe observer enabled"
             shortname: threadsafe
@@ -150,7 +157,7 @@ jobs:
             cc: gcc
             cxx: g++
             configureflags: --enable-thread-safe-observer-pattern
-            moreflags: -lboost_thread -lboost_system -pthread
+            moreflags: -lboost_thread -lboost_system -pthread -lboost_timer -lboost_chrono
             tests: true
     container: ghcr.io/lballabio/quantlib-devenv:${{ matrix.tag }}
     steps:
