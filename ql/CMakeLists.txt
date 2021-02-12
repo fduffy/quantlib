@@ -2300,6 +2300,7 @@ if(WIN32)
     set_property(TARGET ${QL_OUTPUT_NAME} PROPERTY PROJECT_LABEL "QuantLib")
 else()
     add_library(${QL_OUTPUT_NAME} ${QuantLib_SRC} ${QuantLib_HDR})
+    target_link_libraries(${QL_OUTPUT_NAME} ${Boost_LIBRARIES})
 endif()
 set(QL_LINK_LIBRARY ${QL_OUTPUT_NAME} PARENT_SCOPE)
 
